@@ -22,9 +22,9 @@
 				<table class="title">
 					<tr>
 						<th width="20%">번호</th>
-						<th width="40%">제목</th>
+						<th width="30%">제목</th>
 						<th width="20%">작성자</th>
-						<th width="20%">등록일</th>
+						<th width="30%">등록일</th>
 					</tr>
 				</table>
 				<table class="content">
@@ -37,13 +37,13 @@
 							<% data.forEach(function(item, index){ %>
 								<tr>
 										<td width="20%"><%=item.bid %></td>
-										<td width="40%"><a href="/board/update?bid=<%=item.bid%>">
+										<td width="30%"><a href="/board/update?bid=<%=item.bid%>">
 											<%=item.title %></a></td>
 										<td width="20%"><%=item.user_name %></td>
-										<td width="20%"><%=item.cdate.getFullYear() + '년 ' + 
-											(item.cdate.getMonth()+1) + '월 ' + 
+										<td width="30%"><%=item.cdate.getFullYear() + '년' + 
+											(item.cdate.getMonth()+1) + '월' + 
 											item.cdate.getDate()+'일 ' + 
-											item.cdate.getHours()+'시 ' + 
+											item.cdate.getHours()+'시' + 
 											item.cdate.getMinutes()+'분'%>
 											
 										</td>
