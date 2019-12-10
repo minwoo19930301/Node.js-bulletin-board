@@ -10,11 +10,11 @@
 		<div class="board-page">
 			<div class="board">
                 <h1>수정</h1>
-                <div align="right">작성자</div>
+                <div align="right">작성자 : <%=data[0].user_name%></div>
                 <div class="board-form">
-					
-                    <input id="board_title" type="text"/>
-                    <textarea id="board_content" rows="10"></textarea>
+					<input id = "bid" type="hidden" value="<%=data[0].bid%>"/>
+                    <input id="board_title" type="text" value ="<%=data[0].title%>"/>
+                    <textarea id="board_content" rows="10"/><%=data[0].content%></textarea>
                 </div>
 				<div align="right">
                     <button id="btn_board_update">수정</button>

@@ -45,9 +45,55 @@ router.post('/register/process', function(req, res, next) {
 
 });
 
-/* board Register page */
+
+
+
+/* board Update page */
 router.get('/update', function(req, res, next) {
-    res.render('boardUpdate');
+    connection.query('select * from t_board where bid = ?', [req.query.bid], function(err, rows){
+        if(err) {
+            console.log(err);
+            res.render('boardUpdate', {'status':'Error'});
+        } else {
+            console.log("success");
+            res.render('boardUpdate', {'status':'OK', 'data':rows});
+        }
+    });
 });
+
+//update process
+router.post('/update/process', function(req, res, next) {
+    var sql =  'update t_board set title=?, content=? where bid = ?;';
+    var values = [req.body.board_title,
+                    req.body.board_content,
+                    req.body.bid];
+    connection.query(sql, values, function(err, result){
+        if(err) {
+            res.json({'status':'Error'});
+        } else {
+            ///수정사항 있을 경우 없을 경우
+            if(result.changedRows!=0){
+                     res.json({'status':'OK'});
+            } else{
+                res.json({'status':'error'});
+            }
+            
+        }
+    });
+
+});
+//update process
+router.post('/update/delete', function(req, res, next) {
+    var sql =  'delete from t_board where bid = ?;';
+    connection.query(sql, req.body.bid, function(err, result){
+        if(err) {
+            res.json({'status':'Error'});
+        } else {
+            res.json({'status':'OK'});
+        }
+    });
+
+});
+
 
 module.exports = router;
