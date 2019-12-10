@@ -13,10 +13,14 @@
 				<h1>글 목록</h1>
 
 				<!-- 검색 시작 -->
-				<div class="search" align="right">
-					<input name="searchKeyword" type="text" />
-					<button >검색</button>
-				</div>
+				
+
+				<form id="searchForm" action = '/board/search' method="post" align="right">
+					<input type = "text" name = "searchKey"/>
+					<button>검색</button>
+				</form>
+				
+					
 				<!-- 검색 종료 -->
 
 				<table class="title">
@@ -40,6 +44,7 @@
 										<td width="30%"><a href="/board/update?bid=<%=item.bid%>">
 											<%=item.title %></a></td>
 										<td width="20%"><%=item.user_name %></td>
+										<!-- /// query 대신 ejs  -->
 										<td width="30%"><%=item.cdate.getFullYear() + '년' + 
 											(item.cdate.getMonth()+1) + '월' + 
 											item.cdate.getDate()+'일 ' + 

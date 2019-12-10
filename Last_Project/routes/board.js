@@ -46,6 +46,21 @@ router.post('/register/process', function(req, res, next) {
 });
 
 
+/* search list page */
+router.post('/search', function(req, res, next) {
+    var sql = "select * from t_board where title like ?"
+    var value = ['\%' + req.body.searchKey + '\%']
+    connection.query(sql,value ,function(err, rows){
+        if(err) {
+            console.log(err);
+            res.render('boardList', {'status':'Error'});
+        } else {
+            console.log(rows);
+            res.render('boardList', {'status':'OK', 'data':rows});
+        }
+    });
+});
+
 
 
 /* board Update page */
