@@ -86,6 +86,7 @@ router.post('/update/process', function(req, res, next) {
         if(err) {
             res.json({'status':'Error'});
         } else {
+            
             ///수정사항 있을 경우 없을 경우
             if(result.changedRows!=0){
                      res.json({'status':'OK'});
@@ -110,5 +111,8 @@ router.post('/update/delete', function(req, res, next) {
 
 });
 
-
+router.get('/logout', function(req, res, next) {
+    req.session.destroy();
+    res.redirect('/');
+});
 module.exports = router;

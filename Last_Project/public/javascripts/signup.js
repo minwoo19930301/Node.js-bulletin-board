@@ -1,5 +1,23 @@
 var isCheckedId = false;
 
+
+$(function(){
+    $('#login_pwd').keyup(function(){
+      $('#message').html('');
+    });
+
+    $('#confirm_pwd').keyup(function(){
+
+        if($('#login_pwd').val() != $('#confirm_pwd').val()){
+          $('#message').html('비밀번호 일치하지 않음');
+          
+        } else{
+          $('#message').html('비밀번호 일치함');
+        }
+
+    });
+});
+
 $('#login_id').change(function(){
     if(isCheckedId) {
         isCheckedId = false;
@@ -18,10 +36,10 @@ $('#btn_check_id').on('click', function() {
             success:function(data) {
                 if(data == 'OK') {
                     isCheckedId = true;
-                    $('#message').text('id 사용 가능');
+                    $('#message').html('id 사용 가능');
                 } else if(data == 'DUPLICATED') {
                     isCheckedId = false;
-                    $('#message').text('id 사용 불가');    
+                    $('#message').html('id 사용 불가');    
                 } else {
                     isCheckedId = false;
                     $('#message').text('error 발생, 재시도..');
@@ -36,6 +54,7 @@ $('#btn_check_id').on('click', function() {
 });
 
 $('#btn_signup').on('click', function() {
+
     if(!isCheckedId) {
         alert('ID 체크해~');
         return;
@@ -46,6 +65,10 @@ $('#btn_signup').on('click', function() {
     }
     if($('#login_pwd').val() != $('#confirm_pwd').val() ) {
         alert('비밀번호 달라~');
+        return;
+    }
+    if($('#email').val().match(/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i) == null){
+        alert('이메일 형식 잘못됨.');
         return;
     }
     $.ajax({

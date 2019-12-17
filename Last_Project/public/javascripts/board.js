@@ -1,3 +1,7 @@
+$('#btn_logout').on('click', function() {
+    window.location.replace("/board/logout");
+});
+
 $('#btn_board_new').on('click', function() {
     window.location.replace("/board/register");
 });

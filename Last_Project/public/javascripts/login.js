@@ -23,3 +23,7 @@ $('#btn_login').on('click', function() {
         }
     });
 });
+
+$('#btn_admin').on('click', function() {
+    window.location.replace("/admin");
+});
